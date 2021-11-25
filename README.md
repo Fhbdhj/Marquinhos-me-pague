@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://github.com/Shauryan23/Agriculture-Guide">
-    <img src="https://user-images.githubusercontent.com/64647655/143258243-6554190b-5b3f-4a93-9902-49c3c793b948.png" alt="Agriculture Guide" width="350" />
+    <img src="https://user-images.githubusercontent.com/64647655/143258243-6554190b-5b3f-4a93-9902-49c3c793b948.png" alt="Agriculture Guide" width="250" />
   </a>
 </p>
 
