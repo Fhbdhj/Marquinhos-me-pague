@@ -141,9 +141,16 @@ class Ui_MainWindow(object):
         self.line.setFrameShadow(QtWidgets.QFrame.Plain)
         self.line.setFrameShape(QtWidgets.QFrame.VLine)
         self.line.setObjectName("line")
-        self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(540, 180, 401, 191))
-        self.label_6.setObjectName("label_6")
+        
+        # self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        # self.label_6.setGeometry(QtCore.QRect(540, 180, 401, 191))
+        # self.label_6.setText("")
+        # self.label_6.setObjectName("label_6")
+        self.label_image = QtWidgets.QLabel(self.centralwidget)
+        self.label_image.setGeometry(QtCore.QRect(540, 180, 401, 191))
+        self.label_image.setText("")
+        self.label_image.setObjectName("label_image")
+
         self.textEdit_3 = QtWidgets.QTextEdit(self.centralwidget)
         self.textEdit_3.setGeometry(QtCore.QRect(540, 420, 401, 261))
         font = QtGui.QFont()
@@ -175,7 +182,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def submit(self):
-        conn1 = sqlite3.connect('stateDB.sqlite')
+        conn1 = sqlite3.connect('Database/stateDB.sqlite')
         state_cur = conn1.cursor()
         state_cur.execute("SELECT * FROM state WHERE northern IS NOT NULL")
         state = state_cur.fetchall()
@@ -186,7 +193,7 @@ class Ui_MainWindow(object):
         input_budget = float(self.lineEdit_budget.text())
         input_acres = float(self.lineEdit_acres.text())
         print(input_season, input_state, input_budget, input_acres)
-        conn2 = sqlite3.connect('cropDB.sqlite')
+        conn2 = sqlite3.connect('Database/cropDB.sqlite')
         crop_cur = conn2.cursor()
 
         north_state = input_state in state[0]
@@ -196,12 +203,14 @@ class Ui_MainWindow(object):
                 crop_cur.execute("SELECT North_High FROM crop WHERE season=?", [input_season])
                 fetched_crop = crop_cur.fetchall()
                 fetched_crop = str(fetched_crop[0])[2:-3]
+                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\UI_Resources\\crop_img\\" + fetched_crop + ".png"))
                 print(fetched_crop)
             else:
                 print("North Low")
                 crop_cur.execute("SELECT North_Low FROM crop WHERE season=?", [input_season])
                 fetched_crop = crop_cur.fetchall()
                 fetched_crop = str(fetched_crop[0])[2:-3]
+                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\UI_Resources\\crop_img\\" + fetched_crop + ".png"))
                 print(fetched_crop)
         else:
             if input_budget >= 50000 and input_acres >= 10:
@@ -209,12 +218,14 @@ class Ui_MainWindow(object):
                 crop_cur.execute("SELECT South_High FROM crop WHERE season=?", [input_season])
                 fetched_crop = crop_cur.fetchall()
                 fetched_crop = str(fetched_crop[0])[2:-3]
+                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\UI_Resources\\crop_img\\" + fetched_crop + ".png"))
                 print(fetched_crop)
             else:
                 print("South Low")
                 crop_cur.execute("SELECT South_Low FROM crop WHERE season=?", [input_season])
                 fetched_crop = crop_cur.fetchall()
                 fetched_crop = str(fetched_crop[0])[2:-3]
+                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\UI_Resources\\crop_img\\" + fetched_crop + ".png"))
                 print(fetched_crop)
 
     def retranslateUi(self, MainWindow):
@@ -262,7 +273,7 @@ class Ui_MainWindow(object):
         self.label_Budget.setText(_translate("MainWindow", "Budget"))
         self.label_Acres.setText(_translate("MainWindow", "Acres"))
         self.Submit_btn.setText(_translate("MainWindow", "Submit"))
-        self.label_6.setText(_translate("MainWindow", "TextLabel"))
+        # self.label_6.setText(_translate("MainWindow", "TextLabel"))
 
 from UI_Resources import resources
 
