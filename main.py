@@ -187,25 +187,36 @@ class Ui_MainWindow(object):
         input_budget = float(self.lineEdit_budget.text())
         input_acres = float(self.lineEdit_acres.text())
         print(input_season, input_state, input_budget, input_acres)
+        conn2 = sqlite3.connect('cropDB.sqlite')
+        crop_cur = conn2.cursor()
 
         north_state = input_state in state[0]
         if north_state:
             if input_budget >= 50000 and input_acres >= 10:
                 print("North High")
+                crop_cur.execute("SELECT North_High FROM crop WHERE season=?", [input_season])
+                fetched_crop = crop_cur.fetchall()
+                fetched_crop = str(fetched_crop[0])[2:-3]
+                print(fetched_crop)
             else:
                 print("North Low")
+                crop_cur.execute("SELECT North_Low FROM crop WHERE season=?", [input_season])
+                fetched_crop = crop_cur.fetchall()
+                fetched_crop = str(fetched_crop[0])[2:-3]
+                print(fetched_crop)
         else:
             if input_budget >= 50000 and input_acres >= 10:
                 print("South High")
+                crop_cur.execute("SELECT South_High FROM crop WHERE season=?", [input_season])
+                fetched_crop = crop_cur.fetchall()
+                fetched_crop = str(fetched_crop[0])[2:-3]
+                print(fetched_crop)
             else:
                 print("South Low")
-
-        conn2 = sqlite3.connect('cropDB.sqlite')
-        crop_cur = conn2.cursor()
-        crop_cur.execute("SELECT North_High FROM crop WHERE season=?", [input_season])
-        fetched_crop = crop_cur.fetchall()
-        fetched_crop = str(fetched_crop[0])[2:-3]
-        print(fetched_crop)
+                crop_cur.execute("SELECT South_Low FROM crop WHERE season=?", [input_season])
+                fetched_crop = crop_cur.fetchall()
+                fetched_crop = str(fetched_crop[0])[2:-3]
+                print(fetched_crop)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
