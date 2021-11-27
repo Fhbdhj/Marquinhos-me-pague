@@ -14,9 +14,10 @@ cur = conn.cursor()
 
 # cur.execute("DELETE FROM state")
 
-cur.execute("SELECT * FROM state WHERE northern IS NOT NULL")
-ans = cur.fetchall()
-ans = list(ans[0][:-1])
-print(ans[0])
+# TEST QUERY
+# cur.execute("SELECT * FROM state WHERE northern IS NOT NULL")
+# ans = cur.fetchall()
+# ans = list(ans[0][:-1])
+# print(ans[0])
 
 conn.commit()

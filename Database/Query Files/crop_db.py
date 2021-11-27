@@ -16,10 +16,11 @@ cur = conn.cursor()
 
 # cur.execute("DELETE FROM crop")
 
-season = "Kharif"
-cur.execute("SELECT North_High FROM crop WHERE season=?", [season])
-dd = cur.fetchall()
-dd = str(dd[0])[2:-3]
-print(dd)
+# TEST QUERY
+# season = "Kharif"
+# cur.execute("SELECT North_High FROM crop WHERE season=?", [season])
+# dd = cur.fetchall()
+# dd = str(dd[0])[2:-3]
+# print(dd)
 
 conn.commit()

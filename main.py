@@ -10,7 +10,6 @@
 import sqlite3
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -265,8 +264,7 @@ class Ui_MainWindow(object):
         self.Submit_btn.setText(_translate("MainWindow", "Submit"))
         self.label_6.setText(_translate("MainWindow", "TextLabel"))
 
-import resources
-
+from UI_Resources import resources
 
 if __name__ == "__main__":
     import sys

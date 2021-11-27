@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="mainFrame_bg">
-    <file>bg2.jpg</file>
-    <file>bg.jpg</file>
-  </qresource>
-</RCC>
