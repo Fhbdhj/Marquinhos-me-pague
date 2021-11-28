@@ -16,6 +16,7 @@ class Ui_MainWindow(object):
         MainWindow.setEnabled(True)
         MainWindow.resize(1024, 768)
         MainWindow.setStyleSheet("")
+        MainWindow.setWindowIcon(QtGui.QIcon("D:\\Github\\Agriculture-Guide\\assets\\images\\icons8-farm-48.png"))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("background-image: url(:/Backgroung_img/Adjusted_Bg.jpg);")
         self.centralwidget.setObjectName("centralwidget")
@@ -142,10 +143,6 @@ class Ui_MainWindow(object):
         self.line.setFrameShape(QtWidgets.QFrame.VLine)
         self.line.setObjectName("line")
         
-        # self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        # self.label_6.setGeometry(QtCore.QRect(540, 180, 401, 191))
-        # self.label_6.setText("")
-        # self.label_6.setObjectName("label_6")
         self.label_image = QtWidgets.QLabel(self.centralwidget)
         self.label_image.setGeometry(QtCore.QRect(540, 180, 401, 191))
         self.label_image.setText("")
@@ -182,6 +179,15 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def submit(self):
+
+        pesticides_dict ={'Sugarcane': 'Insecticides and Fungi-cides',
+            'Rice': 'Lambda-cyhalothrin, Malathion and Zeta-Cypermethrin',
+            'Cotton': 'Pyrethroids and Organophosphates', 'Maize': ' Herbicides, Atrazine',
+            'Wheat': 'Organochlorines, Organophosphates', 'Mustard seed': 'Plasmodiophora Brassicae',
+            'Banana': 'Chlorpyrifos, Thiabendazole', 'Mango': 'Imidacloprid, Endosulfan',
+            'Cucumber': 'Carbaryl and Dichlorvos (DDVP)', 'Jute': 'Endosulfan and Fenpropathrin',
+            'Pumpkin': 'Sevin(Carbaryl), Furadan', 'Tomato': 'Permethrin, Bifenthrin'}
+
         conn1 = sqlite3.connect('Database/stateDB.sqlite')
         state_cur = conn1.cursor()
         state_cur.execute("SELECT * FROM state WHERE northern IS NOT NULL")
@@ -192,45 +198,52 @@ class Ui_MainWindow(object):
         input_state = self.State_comboBox.currentText()
         input_budget = float(self.lineEdit_budget.text())
         input_acres = float(self.lineEdit_acres.text())
-        print(input_season, input_state, input_budget, input_acres)
         conn2 = sqlite3.connect('Database/cropDB.sqlite')
         crop_cur = conn2.cursor()
 
         north_state = input_state in state[0]
         if north_state:
             if input_budget >= 50000 and input_acres >= 10:
-                print("North High")
                 crop_cur.execute("SELECT North_High FROM crop WHERE season=?", [input_season])
                 fetched_crop = crop_cur.fetchall()
                 fetched_crop = str(fetched_crop[0])[2:-3]
-                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\UI_Resources\\crop_img\\" + fetched_crop + ".png"))
-                print(fetched_crop)
+                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\assets\\crop_img\\" + fetched_crop + ".png"))
+
+                self.textEdit_3.setText(fetched_crop)
+                pesticides_pred =fetched_crop + "\n\nPesticides used are "+ pesticides_dict[fetched_crop]
+                self.textEdit_3.setText(pesticides_pred)
             else:
-                print("North Low")
                 crop_cur.execute("SELECT North_Low FROM crop WHERE season=?", [input_season])
                 fetched_crop = crop_cur.fetchall()
                 fetched_crop = str(fetched_crop[0])[2:-3]
-                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\UI_Resources\\crop_img\\" + fetched_crop + ".png"))
-                print(fetched_crop)
+                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\assets\\crop_img\\" + fetched_crop + ".png"))
+
+                self.textEdit_3.setText(fetched_crop)
+                pesticides_pred =fetched_crop + "\n\nPesticides used are "+ pesticides_dict[fetched_crop]
+                self.textEdit_3.setText(pesticides_pred)
         else:
             if input_budget >= 50000 and input_acres >= 10:
-                print("South High")
                 crop_cur.execute("SELECT South_High FROM crop WHERE season=?", [input_season])
                 fetched_crop = crop_cur.fetchall()
                 fetched_crop = str(fetched_crop[0])[2:-3]
-                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\UI_Resources\\crop_img\\" + fetched_crop + ".png"))
-                print(fetched_crop)
+                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\assets\\crop_img\\" + fetched_crop + ".png"))
+
+                self.textEdit_3.setText(fetched_crop)
+                pesticides_pred =fetched_crop + "\n\nPesticides used are "+ pesticides_dict[fetched_crop]
+                self.textEdit_3.setText(pesticides_pred)
             else:
-                print("South Low")
                 crop_cur.execute("SELECT South_Low FROM crop WHERE season=?", [input_season])
                 fetched_crop = crop_cur.fetchall()
                 fetched_crop = str(fetched_crop[0])[2:-3]
-                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\UI_Resources\\crop_img\\" + fetched_crop + ".png"))
-                print(fetched_crop)
+                self.label_image.setPixmap(QtGui.QPixmap("D:\\Github\\Agriculture-Guide\\assets\\crop_img\\" + fetched_crop + ".png"))
+
+                self.textEdit_3.setText(fetched_crop)
+                pesticides_pred =fetched_crop + "\n\nPesticides used are "+ pesticides_dict[fetched_crop]
+                self.textEdit_3.setText(pesticides_pred)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Crop Guide"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Agriculture Guide"))
         self.label.setText(_translate("MainWindow", "Crop Guide"))
         self.label_State.setText(_translate("MainWindow", "State"))
         self.State_comboBox.setItemText(0, _translate("MainWindow", "Andhra Pradesh"))
@@ -273,9 +286,8 @@ class Ui_MainWindow(object):
         self.label_Budget.setText(_translate("MainWindow", "Budget"))
         self.label_Acres.setText(_translate("MainWindow", "Acres"))
         self.Submit_btn.setText(_translate("MainWindow", "Submit"))
-        # self.label_6.setText(_translate("MainWindow", "TextLabel"))
 
-from UI_Resources import resources
+from assets import resources
 
 if __name__ == "__main__":
     import sys

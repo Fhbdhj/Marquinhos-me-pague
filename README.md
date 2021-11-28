@@ -10,7 +10,7 @@
 
 ## About
 
-![Project Homepage Screenshot](/.github/images/Homepage_Screenshot.png)
+![Project Homepage Screenshot](.github/images/Homepage_Screenshot.png)
 
 This Application delivers a compelling & effective system for enhancing the knowledge of individuals 
 with regards to field of Agriculture and Crop Cultivation. Agriculture-Guide Application can
