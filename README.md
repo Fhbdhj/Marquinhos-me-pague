@@ -10,7 +10,14 @@
 
 ## About
 
-![Project Homepage Screenshot](/.github/images/AgGuide.png)
+![Project Homepage Screenshot](/.github/images/Homepage_Screenshot.png)
+
+This Application delivers a compelling & effective system for enhancing the knowledge of individuals 
+with regards to field of Agriculture and Crop Cultivation. Agriculture-Guide Application can
+also be used for demonstration as well as educational Purposes. This App provides minmal and robust alternative
+for any supervision required for crop cultivation. The Application takes into account multiple
+parameters as the input which might have a direct or indirect impact on the production of
+crops and accordingly predicts the best suitable crop for cultivation along with the pesticides to be used.
 
 ### Built With
 
