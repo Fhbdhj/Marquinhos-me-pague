@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://github.com/Shauryan23/Agriculture-Guide">
-    <img src="https://user-images.githubusercontent.com/64647655/143258243-6554190b-5b3f-4a93-9902-49c3c793b948.png" alt="Agriculture Guide" width="200" />
+    <img src="https://user-images.https://www.google.com/url?sa=i&url=https%3A%2F%2Fpt.pngtree.com%2Ffree-png-vectors%2Fplanta%25C3%25A7%25C3%25A3o&psig=AOvVaw35ERcotdj29PE8H3GlaO-I&ust=1722595983304000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCICawsbQ04cDFQAAAAAdAAAAABAE" alt="Agriculture Guide" width="200" />
   </a>
 </p>
 <p align="center" style="font-family:Cambria; font-size:300%;">Choose Proficiently</p>
