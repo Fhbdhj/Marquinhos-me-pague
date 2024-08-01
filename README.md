@@ -21,11 +21,6 @@ crops and accordingly predicts the best suitable crop for cultivation along with
 
 ### Built With
 
-* [Python](https://www.python.org/)
-* [SQLite](https://www.sqlite.org/index.html)
-* [PyQt5](https://pypi.org/project/PyQt5/)
-* [PyQt5-tools](https://pypi.org/project/pyqt5-tools/)
-
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Getting Started
